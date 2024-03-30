@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# requirements: sudo apt-get install wmctrl xdotool
-# debugging: xprop, xwininfo
+# requirements: sudo apt-get install wmctrl xdotool x11-utils
+# debugging: xprop (x11-utils), xwininfo (x11-utils
 # example of usage (is described how to use script for split windows to 1/2, 1/4 and 1/8 on ultra width monitor with resolution 5120x1440 - so 2 rows and 4 columns):
 #
 #           bash ./tilling_window_manager.sh 2560 1440 0 0 - 1st 1/2
