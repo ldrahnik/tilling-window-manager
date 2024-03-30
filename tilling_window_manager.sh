@@ -4,16 +4,16 @@
 # debugging: xprop, xwininfo
 # example of usage (is described how to use script for split windows to 1/2, 1/4 and 1/8 on ultra width monitor with resolution 5120x1440 - so 2 rows and 4 columns):
 #
-#           bash ./script.sh 2560 1440 0 0 - 1st 1/2
+#           bash ./tilling_window_manager.sh 2560 1440 0 0 - 1st 1/2
 #           (
-#                 bash ./script.sh 1280 1440 0 0 - 1st 1/4
+#                 bash ./tilling_window_manager.sh 1280 1440 0 0 - 1st 1/4
 #                 (
-#                       bash ./script.sh 1280 720 0 0 - 1st lower 1/8
-#                       bash ./script.sh 1280 720 0 720 - 1st upper 1/8
+#                       bash ./tilling_window_manager.sh 1280 720 0 0 - 1st lower 1/8
+#                       bash ./tilling_window_manager.sh 1280 720 0 720 - 1st upper 1/8
 #                 )
-#                 bash ./script.sh 1280 1440 1280 0 - 2nd 1/4
-#                 bash ./script.sh 1280 1440 2560 0 - 3rd 1/4
-#                 bash ./script.sh 1280 1440 3840 0 - 4th 1/4
+#                 bash ./tilling_window_manager.sh 1280 1440 1280 0 - 2nd 1/4
+#                 bash ./tilling_window_manager.sh 1280 1440 2560 0 - 3rd 1/4
+#                 bash ./tilling_window_manager.sh 1280 1440 3840 0 - 4th 1/4
 #           )
 
 # get active window
