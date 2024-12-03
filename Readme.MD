@@ -6,7 +6,7 @@ Script works like a simple tilling window manager. Script uses `xdotool`, `wmctr
 $ sudo apt-get install wmctrl xdotool x11-utils
 ```
 
-Super+[1-7], Super+Control+[1-7], Control+[1-7] have to be free to associate (is necessary to manually cancel existing associations).
+Super+[1-7], Super+Control+[1-7], Control+[1-7] have to be free to associate (**is necessary to manually cancel existing associations**).
 
 ```
 $ bash create_shortcuts.sh
