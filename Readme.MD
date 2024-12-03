@@ -10,6 +10,6 @@ $ sudo apt-get install wmctrl xdotool x11-utils
 $ bash create_shortcuts.sh
 ```
 
-![Preview](preview_shortcuts.png)
-
 ![Preview](preview_create_shortcuts.png)
+
+![Preview](preview_shortcuts.png)
