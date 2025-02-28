@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+if [[ $(command -v apt-get 2>/dev/null) ]]; then
+    sudo apt-get install wmctrl xdotool x11-utils
+fi
+
 get_custom_keybindings() {
     local keybindings
     keybindings=$(gsettings get org.gnome.settings-daemon.plugins.media-keys custom-keybindings)
