@@ -4,6 +4,52 @@ if [[ $(command -v apt-get 2>/dev/null) ]]; then
     sudo apt-get install wmctrl xdotool x11-utils
 fi
 
+FULL_HEIGHT_KEYS="<Super>"
+TOP_HALF_OF_HEIGHT_KEYS="<Control>"
+BOTTOM_HALF_OF_HEIGHT_KEYS="<Super><Control>"
+
+declare -a __COMBOS__
+for n in {1..7}; do
+  __COMBOS__+=("${FULL_HEIGHT_KEYS}${n}")
+  __COMBOS__+=("${TOP_HALF_OF_HEIGHT_KEYS}${n}")
+  __COMBOS__+=("${BOTTOM_HALF_OF_HEIGHT_KEYS}${n}")
+done
+
+__unbind_conflicts__() {
+  local combo="$1"
+  while IFS= read -r line; do
+    local schema key value
+    schema="$(awk '{print $1}' <<<"$line")"
+    key="$(awk '{print $2}' <<<"$line")"
+    value="${line#* $key }"
+
+    local clear_value
+    if [[ "$value" =~ ^\[.*\]$ ]]; then
+      clear_value="[]"
+    else
+      if gsettings range "$schema" "$key" 2>/dev/null | head -1 | grep -qi "string"; then
+        clear_value="''"
+      else
+        clear_value="[]"
+      fi
+    fi
+
+    gsettings set "$schema" "$key" "$clear_value" 2>/dev/null \
+      && echo "Unbound $combo from $schema $key"
+  done < <(gsettings list-recursively | grep -F -- "'$combo'")
+}
+
+echo "This script may unbind existing GNOME/elementary shortcuts for:"
+printf '  %s\n' "${__COMBOS__[@]}"
+read -rp "Do you want to unbind them if found? [y/N] " answer
+if [[ "$answer" =~ ^[Yy]$ ]]; then
+  for c in "${__COMBOS__[@]}"; do
+    __unbind_conflicts__ "$c"
+  done
+else
+  echo "Skipping unbind step."
+fi
+
 get_custom_keybindings() {
     local keybindings
     keybindings=$(gsettings get org.gnome.settings-daemon.plugins.media-keys custom-keybindings)
